@@ -1,0 +1,71 @@
+<br><br><br>
+
+<div class="container">
+    <div class="row">
+
+     <div class="col-md-3">
+        <img src="\public\images\admin.gif" height="150px" width="100%" alt="admin">
+    </div>
+    <div class="col-md-9">
+       <img src="\public\images\driverDetail.png" height="200px" width="80%" alt="admin">
+   </div>
+</div><br>
+    <div class="row">
+
+        <div class="col-md-6 col-md-offset-4" >
+            <form>
+                 <div class="form-group">
+                    <input type="text" placeholder="Name" ng-model="Driver.Name" class="form-control" />
+                </div>
+                <div class="form-group">
+                   <input type="text" placeholder="Location" ng-model="Driver.Address" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <input type="text" ng-model="Driver.Email" placeholder="Email ID" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <input type="password" ng-model="Driver.Password" placeholder="Password" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <input type="text" ng-model="Driver.Phone" placeholder="Phone" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="Registration Number" ng-model="Driver.RegNo" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="License Number" ng-model="Driver.LicenseNo" class="form-control" />
+                </div>
+                <!--<div class="form-group">
+                    <input type="text" placeholder="Photo" ng-model="Driver.Photo" class="form-control" />
+                </div>-->
+                <div class="form-group">
+                    <input type="text" ng-model="Driver.Model" placeholder=" Car Model" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <!--<input type="text" ng-model="Driver.CabType" placeholder="Cab type" class="form-control" />-->
+               <select ng-model="Driver.CabType" id="catCab" class="form-control">
+                <option value="">Select the cab type</option>
+                <option value="Micro">Micro</option>
+                <option value="Mini">Mini</option>
+                <option value="Pool">Pool</option>
+               </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" ng-model="Driver.Make" placeholder="Payment" class="form-control" />
+                </div>
+                <center><button type="button" ng-click="SaveDriver()" class="btn btn-warning">Submit</button></center>
+            </form>
+            <br><br>
+        </div>
+        <div class="col-md-6 col-md-offset-3">
+        <ul class="nav nav-pills">
+          <!-- <li class="nav-item"><a class="nav-link active" href="#">Home</a></li> -->
+          <li class="nav-item"><a class="nav-link" href="#/driverV" ng-hide="adminCheck">View Driver Data</a></li>
+          <li class="nav-item active"><a class="nav-link" href="#/driver" ng-hide="adminCheck">Add Driver Data</a></li>
+          <li class="nav-item"><a class="nav-link" href="#/tariffV" ng-hide="adminCheck">View Tariff Data</a></li>
+          <li class="nav-item"><a class="nav-link" href="#/tariff" ng-hide="adminCheck">Add Tariff Data</a></li>
+        </ul>
+          <br>
+      </div>
+
+    </div>

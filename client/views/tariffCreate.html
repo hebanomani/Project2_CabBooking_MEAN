@@ -1,0 +1,53 @@
+<br><br><br>
+<div class="container">
+    <div class="row">
+
+      <div class="row">
+         <div class="col-md-3">
+            <img src="\public\images\admin.gif" height="150px" width="100%" alt="admin">
+        </div>
+
+        <div class="col-md-9">
+            <form>
+                <div class="form-group">
+                    <input type="text" placeholder="Normal Rate" ng-model="Tariff.NormalRate" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="Peak Rate" ng-model="Tariff.PeakRate" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <!--<input type="text" ng-model="Tariff.CabType" placeholder="Cab Type" class="form-control" />-->
+                    <select id="cabType" ng-model="Tariff.CabType" class="form-control">
+                <option value="">Select the cab type</option>
+                <option value="Micro">Micro</option>
+                <option value="Mini">Mini</option>
+                <option value="Pool">Pool</option>
+               </select>
+                </div>
+                 <div class="form-group">
+                     <label for="timepicker1">Start Peak Time</label>
+                <input id='timepicker1' type='text' name='timepicker' class="form-control" />
+                    <!--<input type="text" placeholder="Start Peak Hour" ng-model="Tariff.StartPeakHour" class="form-control" />-->
+                </div>
+                <div class="form-group">
+                    <label for="timepicker2">End Peak Time</label>
+              <input id='timepicker2' type='text' name='timepicker' class="form-control" />
+                    <!--<input type="text" placeholder="End Peak Hour" ng-model="Tariff.EndPeakHour" class="form-control" />-->
+                </div>
+                <center><button type="button" ng-click="SaveTariff()" class="btn btn-warning">Submit</button></center>
+            </form>
+            <br>
+        </div>
+    </div>
+    <div class="col-md-6 col-md-offset-3">
+    <ul class="nav nav-pills">
+      <!-- <li class="nav-item"><a class="nav-link active" href="#">Home</a></li> -->
+      <li class="nav-item"><a class="nav-link" href="#/driverV" ng-hide="adminCheck">View Driver Data</a></li>
+      <li class="nav-item"><a class="nav-link" href="#/driver" ng-hide="adminCheck">Add Driver Data</a></li>
+      <li class="nav-item"><a class="nav-link" href="#/tariffV" ng-hide="adminCheck">View Tariff Data</a></li>
+      <li class="nav-item active"><a class="nav-link" href="#/tariff" ng-hide="adminCheck">Add Tariff Data</a></li>
+    </ul>
+    <br>
+    </div>
+
+</div>

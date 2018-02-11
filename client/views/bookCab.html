@@ -1,0 +1,320 @@
+
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+       #map_canvas{
+        height: 300px;
+        width:100%;
+      }
+
+      .borderless td, .borderless th {
+    border: none;
+}
+    </style>
+
+
+    <div class="row">
+     <form class="form-horizontal" role="form">
+          <div class="form-group">
+            <label for="origin" class="col-sm-3 control-label">Your Location</label>
+            <div class="col-sm-8">
+              <input type="text" id="origin" class="form-control" ng-model="directions.origin" name="autocomplete" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="destination" class="col-sm-3 control-label">Choose Destination</label>
+            <div class="col-sm-8">
+              <input type="text" id="destination" class="form-control" ng-model="directions.destination" name="autocomplete"/>
+            </div>
+          </div>
+          <br/>
+            <div class="form-group">
+            <div class="col-md-offset-6 col-sm-6">
+              <button class="btn btn-warning btn-md" ng-click="getEstimate()">Get Info</button>
+            </div>
+          </div>
+        </form>
+    </div>
+
+<br>
+<div class="container">
+    <div id="showDur" class="row">
+  <table class="col-md-6 col-md-offset-4 borderless">
+    <tr>
+      <td class="col-md-3 panel panel-info panel-heading">
+        <div style="font-size:30px" class=" col-md-offset-2"></div>
+        <span class="fontdeco" style="font-size:18px">Distance : </span>&nbsp;&nbsp;
+        <span id="spanDistance" style="font-size:18px" ></span>
+    </td>
+
+    <td class="col-md-3 panel panel-info panel-heading">
+      <div style="font-size:30px" class=" col-md-offset-2"></div>
+      <span class="fontdeco" style="font-size:18px">Approx. Travel Time : </span>&nbsp;&nbsp;
+       <span id="spanTime" style="font-size:18px"></span>
+       </td>
+    </tr>
+
+  </table>
+  <div><br/><br/><br/></div>
+</div>
+
+
+    <br/>
+    <div class="row" height="100%">
+
+    <div class="col-md-8 col-md-offset-3">
+    <br/>
+    <div id="map_canvas"></div>
+<br/><br/>
+    </div>
+     <div class="col-md-8 col-md-offset-3">
+        <center>
+              <select id="cabType" class="form-control">
+                <option value="">Select the cab type</option>
+                <option value="Micro">Micro</option>
+                <option value="Mini">Mini</option>
+                <option value="Pool">Pool (Save Earth Save Money)</option>
+               </select>
+        </center>
+        </div>
+
+    <div class="col-md-2 col-md-offset-5">
+      <br/>
+        <center>
+    <button class="btn btn-warning" style="width:100%" ng-click="getFare()">Book Cab</button>
+        </center>
+    </div>
+    <div class="col-md-3">
+      <br/>
+      <center>
+    <!-- <button class="btn btn-warning" style="width:100%" data-toggle="modal" data-target="#myModal">Ride Later</button> -->
+  </center>
+    <br/><br/>
+    </div>
+
+
+
+
+
+
+
+ <div class="modal fade" id="myFareModal" role="dialog">
+<div class="modal-dialog">
+
+<!-- Modal content-->
+<div class="modal-content">
+<div class="modal-header">
+ <button type="button" class="close" data-dismiss="modal">&times;</button>
+ <h2 class="modal-title">Estimated Fare</h2>
+</div>
+<div class="modal-body">
+ <div class="form-group">
+   <div>{{Fare|number:2}}
+   </div>
+  </div>
+</div>
+<div class="modal-footer ">
+<button type="button" class="btn btn-warning" ng-click="sendDetails()" ><span class="glyphicon glyphicon-ok-sign"></span> Confirm</button>
+<button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+</div>
+</div>
+
+</div>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+</div>
+
+
+  <div class="modal fade" id="myFareModal" role="dialog">
+<div class="modal-dialog">
+
+<!-- Modal content-->
+<div class="modal-content">
+<div class="modal-header">
+ <button type="button" class="close" data-dismiss="modal">&times;</button>
+ <h4 class="modal-title">Fare Details</h4>
+</div>
+<div class="modal-body">
+ <div class="form-group">
+   <div>{{Fare|number:2}}
+   </div>
+  </div>
+</div>
+<div class="modal-footer ">
+<button type="button" class="btn btn-success" ng-click="sendDetails()" ><span class="glyphicon glyphicon-ok-sign"></span> Confirm</button>
+<button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+</div>
+</div>
+
+</div>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+</div>
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="myfinalModal" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+       <h4 class="modal-title custom_align" id="Heading"> Congratulations! Booking Details</h4>
+      </div>
+      <div class="modal-body">
+        <table class="table table-striped">
+
+<tr>
+  <td>Driver Name</td>
+  <td>{{DriverName}}</td>
+
+</tr>
+<tr>
+  <td>Driver Mobile</td>
+  <td>{{DriverMobile}}</td>
+
+</tr>
+<tr>
+  <td>Pick up</td>
+  <td id="st"></td>
+</tr>
+
+<tr>
+  <td>Drop At</td>
+  <td id="en"></td>
+</tr>
+<tr>
+  <td>Payment</td>
+  <td>{{DriverCar}}</td>
+</tr>
+<!-- <tr>
+  <td>Cab Type</td>
+  <td>{{CabType}}</td>
+</tr> -->
+<tr>
+  <td>Cab Number</td>
+  <td>{{DriverCarN}}</td>
+</tr>
+<tr>
+  <td>Total Fare</td>
+  <td id="mon"></td>
+</tr>
+
+</table>
+
+  </div>
+    <div class="modal-footer ">
+    <button type="button" class="btn btn-success" data-dismiss="modal" ><span class="glyphicon glyphicon-ok-sign"></span>OK</button>
+  </div>
+    </div>
+<!-- /.modal-content -->
+</div>
+  <!-- /.modal-dialog -->
+</div>
+  <div class="modal fade" id="myModal" role="dialog">
+<div class="modal-dialog">
+
+<!-- Modal content-->
+<div class="modal-content">
+<div class="modal-header">
+ <button type="button" class="close" data-dismiss="modal">&times;</button>
+ <h4 class="modal-title">Modal Header</h4>
+</div>
+<div class="modal-body">
+ <div class="form-group">
+   <div>
+     <label for="datepicker" >Select Date</label>
+      <input type="text" class="form-control" id="datepicker">
+      <label for="timepicker">Select Time</label>
+     <input id='timepicker' class="form-control" type='text' name='timepicker'/>
+   </div>
+  </div>
+</div>
+<div class="modal-footer">
+ <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+</div>
+</div>
+
+</div>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+</div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="myfinalModal" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+       <h4 class="modal-title custom_align" id="Heading"> Congratulations! Booking Details</h4>
+      </div>
+      <div class="modal-body">
+        <table class="table table-striped">
+
+<tr>
+  <td>Driver Name</td>
+  <td>{{DriverName}}</td>
+
+</tr>
+<tr>
+  <td>Driver Mobile</td>
+  <td>{{DriverMobile}}</td>
+
+</tr>
+<tr>
+  <td>Pick up</td>
+  <td id="st"></td>
+</tr>
+
+<tr>
+  <td>Drop At</td>
+  <td id="en"></td>
+</tr>
+<tr>
+  <td>Car</td>
+  <td>{{DriverCar}}</td>
+</tr>
+<tr>
+  <td>Cab Number</td>
+  <td>{{DriverCarN}}</td>
+</tr>
+<tr>
+  <td>Total Fare</td>
+  <td id="mon"></td>
+</tr>
+
+</table>
+
+  </div>
+    <div class="modal-footer ">
+    <button type="button" class="btn btn-success" data-dismiss="modal" ><span class="glyphicon glyphicon-ok-sign"></span>OK</button>
+  </div>
+    </div>
+<!-- /.modal-content -->
+</div>
+  <!-- /.modal-dialog -->
+</div>
+
+
+</div><!-- row-->
+
+
+
+</div> <!--container-->

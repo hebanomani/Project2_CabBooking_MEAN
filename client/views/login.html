@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-4 col-md-offset-4 well">
+            <div class="account-wall">
+                <form>
+                 <div class="form-group">
+                  <center><img src="\public\images\login.png" height="100px" alt="signIn"></center>
+                </div>
+                 <div class="form-group">
+                <input type="text" class="form-control" placeholder="User ID" ng-model="User.Email" required autofocus>
+                 </div>
+                  <div class="form-group">
+                <input type="password" class="form-control" placeholder="Password" ng-model="User.Password" required>
+                </div>
+              <center>  <a href="#/Profile" class="btn btn-warning" ng-click="LoginUser()" style="margin-top: 20px">Sign In</a><center>
+                </form>
+            </div>
+            <br/>
+            <center><a href="#/user" class="text-center new-account"><font color="#EE7600">New User? Sign Up </font></a></center>
+        </div>
+    </div>
+</div>
+<br><br><br><br><br><br><br><br>

@@ -1,0 +1,82 @@
+<br><br><br>
+<div class="container">
+ <div class="row">
+
+   <div class="row">
+      <div class="col-md-3">
+         <img src="\public\images\admin.gif" height="150px" width="100%" alt="admin">
+     </div>
+
+   <div class="col-md-9">
+    <table class="table  table-condensed table-striped table-hover">
+      <tr>
+        <th>CabType</th>
+        <th>StartPeakHour</th>
+        <th>EndPeakHour</th>
+        <th>NormalRate</th>
+        <th>PeakRate</th>
+        <th colspan="2"><center>Operations</center></th>
+      </tr>
+      <tr ng-repeat="t in tariffData">
+
+        <td>{{t.CabType}}</td>
+        <td>{{t.StartPeakHour}}</td>
+        <td>{{t.EndPeakHour}}</td>
+        <td>{{t.NormalRate}}</td>
+        <td>{{t.PeakRate}}</td>
+        <td><button ng-click="DeleteTariff(t)" class="btn btn-danger" onclick="this.parentElement.style.display='none';"><span class="glyphicon glyphicon-remove-circle"></span></button></td>
+        <td><button type="button" ng-click="UpdateTariff(t._id)" class="btn btn-warning"><span class="glyphicon glyphicon-edit"></span></button></td>
+
+      </tr>
+    </table>
+
+       </div>
+    </div>
+</div>
+
+<div class="row" id="updateDiv">
+
+ <div class="col-md-9 col-md-offset-3">
+
+          <form>
+                <div class="form-group">
+                    <input type="text" ng-model="getTariff.NormalRate" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <input type="text" ng-model="getTariff.PeakRate" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <input type="text" ng-model="getTariff.CabType" class="form-control" />
+                </div>
+                 <div class="form-group">
+                     <label for="timepicker1">Start Peak Time</label>
+                <input id='timepicker1' type='text' name='timepicker' class="form-control" />
+                    <!--<input type="text" placeholder="Start Peak Hour" ng-model="Tariff.StartPeakHour" class="form-control" />-->
+                </div>
+                <div class="form-group">
+                    <label for="timepicker2">End Peak Time</label>
+              <input id='timepicker2' type='text' name='timepicker' class="form-control" />
+                    <!--<input type="text" placeholder="End Peak Hour" ng-model="Tariff.EndPeakHour" class="form-control" />-->
+                </div>
+
+          <div class="form-group">
+        <button type="button" ng-click="UpdateT()" class="btn btn-danger">UPDATE</button>
+        </div>
+        </form>
+
+       </div>
+
+    </div>
+    <div class="col-md-6 col-md-offset-3">
+    <ul class="nav nav-pills">
+      <!-- <li class="nav-item"><a class="nav-link active" href="#">Home</a></li> -->
+      <li class="nav-item"><a class="nav-link" href="#/driverV" ng-hide="adminCheck">View Driver Data</a></li>
+      <li class="nav-item"><a class="nav-link" href="#/driver" ng-hide="adminCheck">Add Driver Data</a></li>
+      <li class="nav-item active"><a class="nav-link" href="#/tariffV" ng-hide="adminCheck">View Tariff Data</a></li>
+      <li class="nav-item"><a class="nav-link" href="#/tariff" ng-hide="adminCheck">Add Tariff Data</a></li>
+    </ul>
+    <br>
+    </div>
+
+
+</div>
